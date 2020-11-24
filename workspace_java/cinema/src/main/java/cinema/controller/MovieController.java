@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import cinema.dto.MovieFull;
+import cinema.dto.MovieLight;
 import cinema.persistence.entity.Movie;
 import cinema.service.IMovieService;
 
@@ -28,31 +30,31 @@ public class MovieController {
 	
 	@GetMapping
 	@ResponseBody
-	public List<Movie> allMovies() {
+	public List<MovieLight> allMovies() {
 		return movieService.getAllMovies();
 	}
 	
 	@GetMapping("/{id}")
 	@ResponseBody
-	public Optional<Movie> movieById(@PathVariable("id") int idMovie) {
+	public Optional<MovieFull> movieById(@PathVariable("id") int idMovie) {
 		return movieService.getMovieById(idMovie);
 	}
 	
 	@GetMapping("/byTitle")
 	@ResponseBody
-	public Set<Movie> movieByPartialTitle(@RequestParam("t") String partialTitle) {
+	public Set<MovieLight> movieByPartialTitle(@RequestParam("t") String partialTitle) {
 		return movieService.getMovieByPartialTitle(partialTitle);
 	}
 	
 	@GetMapping("/byDirector")
 	@ResponseBody
-	public Set<Movie> findByDirector(@RequestParam("d") int idDirector){
+	public Set<MovieLight> findByDirector(@RequestParam("d") int idDirector){
 		return movieService.getMoviesByDirector(idDirector);
 	}
 	
 	@GetMapping("/byActor")
 	@ResponseBody
-	public Set<Movie> findByActor(@RequestParam("a") int idActor){
+	public Set<MovieLight> findByActor(@RequestParam("a") int idActor){
 		return movieService.getMoviesByActor(idActor);
 	}
 	

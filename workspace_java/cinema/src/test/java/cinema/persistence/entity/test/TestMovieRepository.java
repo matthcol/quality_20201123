@@ -15,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,8 @@ class TestMovieRepository {
 	@Autowired
 	EntityManager entityManager;
 	
+	// tous les tests suivants se font base vide (tables vides)
+	
 	@Test
 	void testSave() {
 		// given 
@@ -44,6 +47,17 @@ class TestMovieRepository {
 		// then 
 		var id = movie.getIdMovie();
 		assertNotNull(id);
+	}
+	
+	@Test
+	void testSaveMovieWithTitleTooLong() {
+		// given 
+		String title = "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+		Movie movie = new Movie(title, 2019);
+		// when/then
+		assertThrows(
+				DataIntegrityViolationException.class,
+				()->movieRepository.save(movie));
 	}
 	
 	
@@ -72,14 +86,14 @@ class TestMovieRepository {
 		// when
 		var dataRead = movieRepository.findAll();
 		// then
-		dataRead.forEach(System.out::println);
-		assertEquals(data.size(), dataRead.size());
-		assertTrue(dataRead.stream()
-				.map(Movie::getTitle)
-				.allMatch(tr -> data.stream()
-							.map(Movie::getTitle)
-							.anyMatch(th -> th.equals(tr))
-						));
+		assertAll(
+				()->assertEquals(data.size(), dataRead.size()),
+				()->assertTrue(dataRead.stream()
+					.map(Movie::getTitle)
+					.allMatch(tr -> data.stream()
+								.map(Movie::getTitle)
+								.anyMatch(th -> th.equals(tr))
+						)));
 	}
 	
 	@Test
