@@ -33,8 +33,8 @@ def get_db():
 
 @app.post("/movies/", response_model=schemas.Movie)
 def create_movie(movie: schemas.MovieCreate, db: Session = Depends(get_db)):
-    # TODO: complete code here
-    return None
+    return crud.create_movie(db=db, movie=movie)
+
 
 @app.put("/movies/director/", response_model=schemas.MovieDetail)
 def update_movie_director(mid: int, sid: int, db: Session = Depends(get_db)):

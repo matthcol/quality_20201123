@@ -11,6 +11,17 @@ from fastapi.logger import logger
 import models, schemas
 
 # CRUD for Movie objects
+
+def create_movie(db: Session, movie: schemas.MovieCreate):
+    # convert schema object from rest api to db model object
+    db_movie = models.Movie(title=movie.title, year=movie.year)
+    # add in db cache and force insert
+    db.add(db_movie)
+    db.commit()
+    # retreive object from db (to read at least generated id)
+    db.refresh(db_movie)
+    return db_movie
+
 def get_movie(db: Session, movie_id: int):
     # read from the database (get method read from cache)
     # return object read or None if not found
