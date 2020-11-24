@@ -1,5 +1,10 @@
 """
-    
+API Rest developed with fastapi https://fastapi.tiangolo.com/
+Install:
+    pip install fastapi
+    pip install uvicorn
+Run server in dev mode
+    uvicorn main:app --reload
 """
 from typing import List, Optional, Tuple
 import logging
@@ -50,7 +55,9 @@ def add_movie_actor(mid: int, sid: int, db: Session = Depends(get_db)):
         sid (query param): star id to add in movie.actors
     """
     # TODO: complete code here
-    return None
+    # fake
+    return { "id": 1, "title": "Joker", "year": 2019, "actors":[] }
+    # return None
 
 @app.put("/movies/actors/", response_model=schemas.MovieDetail)
 def update_movie_actors(mid: int, sids: List[int], db: Session = Depends(get_db)):

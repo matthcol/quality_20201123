@@ -5,7 +5,7 @@
  *      Author: Matthias
  */
 
-#include "WeightedPoint.h"
+#include "../include/WeightedPoint.h"
 
 WeightedPoint::WeightedPoint() {
 }

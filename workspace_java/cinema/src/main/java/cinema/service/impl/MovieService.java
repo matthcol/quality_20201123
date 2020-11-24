@@ -42,6 +42,7 @@ public class MovieService implements IMovieService {
 
 	@Override
 	public Optional<MovieFull> getMovieById(int idMovie) {
+		// return Optional.empty();
 		return movieRepository.findById(idMovie)
 				.map(me -> modelMapper.map(me, MovieFull.class));
 	}
@@ -54,10 +55,12 @@ public class MovieService implements IMovieService {
 
 	@Override
 	public Set<MovieLight> getMoviesByDirector(int idDirector) {
-		return personRepository.findById(idDirector)
-				.map(movieRepository::findByDirector)
-				.map(this::toMovieLightSetChronologicOrder)
-				.orElseGet(Collections::emptySet);
+		// TODO
+		return Set.of();
+//		return personRepository.findById(idDirector)
+//				.map(movieRepository::findByDirector)
+//				.map(this::toMovieLightSetChronologicOrder)
+//				.orElseGet(Collections::emptySet);
 	}
 
 	@Override

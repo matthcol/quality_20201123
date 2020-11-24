@@ -7,7 +7,7 @@ from point import Point
 # 0.1 (10) = 0.000110011001100...
 # float (simple precision), mantisse 23 bits
 # double (double precision), mantisse 52 bits
-# valeur exacte: 3.5, 3.25, 3.75, 3.125, ..
+# valeur exacte: 3.5, 3.25, 3.75, 3.125, .
 
 def test_classic_distance():
     # given

@@ -44,15 +44,21 @@ public class TestMovieControllerMockito {
 		var title = "Joker";
 		var year = 2019;
 		var movie = DtoBuilder.newMovieFull(id,title, year);
+		// prepare perfect answer from mocked service
 		given(movieService.getMovieById(id))
 			.willReturn(Optional.of(movie));
 		// when
 		var res = movieController.movieById(id);
 		// then
+		// check : methode sous-jacente a bien été appelée
 		then(movieService)
 				.should()
 				.getMovieById(eq(id));
+		// check : assertions sur le retour de la méthode testée
+		// 1. la reponse contient un movie
 		assertTrue(res.isPresent());
+		// 2. le movie est bien celui prevue comme reponse parfaite
+		//     de la couce sous-jacente
 		assertSame(movie, res.get());
 	}
 	

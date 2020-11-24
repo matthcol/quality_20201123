@@ -5,7 +5,7 @@
  *      Author: Matthias
  */
 
-#include "Polygon.h"
+#include "../include/Polygon.h"
 #include <algorithm>
 #include <functional>
 

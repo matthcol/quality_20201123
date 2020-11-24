@@ -5,7 +5,7 @@
  *      Author: Matthias
  */
 
-#include "Point.h"
+#include "../include/Point.h"
 
 #include <cmath>
 

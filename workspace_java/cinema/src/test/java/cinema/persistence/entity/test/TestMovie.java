@@ -2,6 +2,8 @@ package cinema.persistence.entity.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,6 +16,14 @@ import cinema.persistence.entity.Movie;
  */
 class TestMovie {
 
+	@BeforeEach
+	void initSomethingBeforeEachTest() {}
+	
+	// once only
+	@BeforeAll
+	static void initSomethingBeforeAllTest() {}
+	
+	
 	@Test
 	void testConstructorDefault() {
 		// given

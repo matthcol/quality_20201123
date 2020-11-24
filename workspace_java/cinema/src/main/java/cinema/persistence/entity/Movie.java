@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -96,6 +97,7 @@ public class Movie {
 	
 	@ManyToOne 
 	@JoinColumn(name="id_director", nullable=true)
+	// @Transient
 	public Person getDirector() {
 		return director;
 	}

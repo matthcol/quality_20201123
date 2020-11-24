@@ -56,8 +56,9 @@ class TestMovieRepository {
 		Movie movie = new Movie(title, 2019);
 		// when/then
 		assertThrows(
-				DataIntegrityViolationException.class,
-				()->movieRepository.save(movie));
+				DataIntegrityViolationException.class, 
+				() -> movieRepository.save(movie));
+	
 	}
 	
 	
@@ -70,7 +71,18 @@ class TestMovieRepository {
 		// when 
 		movieRepository.save(movie);
 		// then 
-		// TODO : asserts
+		var director = movie.getDirector();
+		assertSame(person, director);
+		var idMovie = movie.getIdMovie();
+		assertNotNull(idMovie, "Movie saved");
+		// check association in database
+		var idPerson = person.getIdPerson();
+		entityManager.clear();
+		var movieRead = entityManager.find(Movie.class, idMovie);
+		assertAll(
+				() -> assertEquals(idMovie, movieRead.getIdMovie(), "Movie read 2nd time ok"),
+				() -> assertNotNull(movieRead.getDirector(), "Movie read 2nd time has a director"));
+		assertEquals(idPerson, movieRead.getDirector().getIdPerson(), "Director has right id");
 	}
 	
 	@Test

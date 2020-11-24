@@ -12,8 +12,8 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 	Set<Movie> findByTitleContainingIgnoreCase(String title);
 	Set<Movie> findByYearBetween(int year1, int year2);
 	Set<Movie> findByTitleAndYear(String title, int year);
-	Set<Movie> findByDirector(Person director);
-	Set<Movie> findByDirectorNameEndingWith(String name);
+//	Set<Movie> findByDirector(Person director);
+//	Set<Movie> findByDirectorNameEndingWith(String name);
 	Set<Movie> findByActors(Person actor);
 	Set<Movie> findByActorsIdPerson(int idPerson);
 	Set<Movie> findByActorsNameEndingWith(String name);

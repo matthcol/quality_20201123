@@ -55,10 +55,11 @@ class TestMovieControllerMockSpy {
 			      .andExpect(status().isOk())
 			      .andExpect(MockMvcResultMatchers.jsonPath("$.title").exists())
 			      .andExpect(MockMvcResultMatchers.jsonPath("$.idMovie").value(id));
-		// spy
+		// spy : regarde si la méthode est appelée sur le service réel
+		//       encapsulé par un espion
 		then(movieService)
-		.should()
-		.getMovieById(eq(id));
+			.should()
+			.getMovieById(eq(id));
 	}
 
 

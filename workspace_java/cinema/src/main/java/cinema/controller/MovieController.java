@@ -68,16 +68,19 @@ public class MovieController {
 	@PutMapping("/modify")
 	@ResponseBody
 	public Optional<Movie> modifyMovie(@RequestBody Movie movie) {
+		// TODO
 		return Optional.empty();
 	}
 	
 	@PutMapping("/addActor")
 	public Optional<Movie> addActor(@RequestParam("a") int idActor, @RequestParam("m") int idMovie) {
+		// TODO
 		return Optional.empty();
 	}
 	
 	@PutMapping("/setDirector")
 	public Optional<Movie> setDirector(@RequestParam("d") int idDirector, @RequestParam("m") int idMovie) {
+		// TODO
 		return Optional.empty();
 	}
 	
