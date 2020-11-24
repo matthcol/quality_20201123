@@ -17,8 +17,11 @@ def test_create_movie():
         json=movieJson,
     )
     # then
+    movieResponse = response.json()
     assert response.status_code == 200
-    assert response.json() == movieJson
+    assert (movieResponse['title'], movieResponse['year']) == (movieJson['title'], movieJson['year'])
+    assert 'id' in movieResponse
+    assert type(movieResponse['id']) == int
 
 
 

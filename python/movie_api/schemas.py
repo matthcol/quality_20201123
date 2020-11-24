@@ -34,7 +34,7 @@ class MovieCreate(MovieBase):
 
 # movies from database with id
 class Movie(MovieBase):
-    id: int
+    #id: int
 
     class Config:
         orm_mode = True
